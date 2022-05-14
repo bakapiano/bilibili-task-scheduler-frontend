@@ -1,7 +1,9 @@
 import axios from 'axios'
 
+const HOST = import.meta.env.VITE_SOME_HOST || "http://127.0.0.1:8000/"
+
 const service = axios.create({
-    baseURL: 'http://127.0.0.1:8000/', // 所有的请求地址前缀部分
+    baseURL: HOST, // 所有的请求地址前缀部分
     timeout: 60000, // 请求超时时间毫秒
     withCredentials: true, // 异步请求携带cookie
     headers: {
