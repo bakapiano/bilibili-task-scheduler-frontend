@@ -178,7 +178,6 @@ export default {
             console.log(result)
             this.message.success("任务创建成功")
             this.$emit("created")
-            this.buttonLoading = false
           } catch (err) {
             console.log(err)
             const msg = err.response.data.detail
@@ -186,6 +185,7 @@ export default {
               this.message.error(msg)
             }
           }
+          this.buttonLoading = false
         } else {
           console.log(errors);
         }

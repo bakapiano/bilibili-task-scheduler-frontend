@@ -1,5 +1,5 @@
 <template>
-<n-ellipsis style="max-width: 120px">
+<n-ellipsis style="max-width: 100px">
   <a :href="url" @click.stop.prevent="goTo">{{ url }}</a>
   <template #tooltip>
     <div style="text-align: center;cursor: pointer;" @click="goTo">

@@ -35,13 +35,19 @@
         </n-list-item>
         <n-list-item>
           <n-thing title="目标链接">
-            <url-ellipsis :url="data.url"></url-ellipsis>
+<!--            <url-ellipsis :url="data.url"></url-ellipsis>-->
+            <a :href="data.url" target="_blank">{{ data.url }}</a>
           </n-thing>
         </n-list-item>
         <n-list-item>
           <n-thing title="发送内容">
             <n-input type="textarea" :value="data.bullets" disabled>
             </n-input>
+          </n-thing>
+        </n-list-item>
+        <n-list-item>
+          <n-thing title="成功/尝试">
+            {{ data.success_count }} / {{ data.total_count }}
           </n-thing>
         </n-list-item>
         <n-list-item>

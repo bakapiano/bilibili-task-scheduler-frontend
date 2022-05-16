@@ -1,6 +1,6 @@
 <template>
   <n-layout content-style="padding: 24px;">
-    <n-grid cols="24" item-responsive>
+    <n-grid cols="24" item-responsive v-if="ready">
       <n-grid-item
           span="0:24 400:24 1200:4"
           offset="0:0 400:0 1200:4"
@@ -67,6 +67,7 @@ export default {
           sortOrder: "descend",
           sorter: 'default',
         },
+        //  移动端隐藏 begin
         ...(document.body.clientWidth >= 900 ? ([
           {
             title: "开始时间",
@@ -87,12 +88,19 @@ export default {
             key: "interval",
           },
         ]) : []),
+        // 移动端隐藏 end
         {
           title: "目标链接",
           key: "url",
           render(row) {
             return h(UrlEllipsis, {url: row.url})
           },
+        },
+        {
+          title: "成功/尝试",
+          render(row) {
+            return `${row.success_count}/${row.total_count}`
+          }
         },
         {
           title: "任务状态",
@@ -106,6 +114,7 @@ export default {
   },
   data() {
     return {
+      ready: false,
       data: null,
       taskId: 0,
       showModal: false,
@@ -132,6 +141,7 @@ export default {
       window.location = "/#/login"
     }
     await this.loadTaskData()
+    this.ready = true
   },
   async unmounted() {
     if (this.loadTaskInterval) {

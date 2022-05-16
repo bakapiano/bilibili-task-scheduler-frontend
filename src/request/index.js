@@ -18,4 +18,16 @@ service.interceptors.request.use(config => {
     return config
 })
 
+service.interceptors.response.use(
+    (res) => res,
+    (err) => {
+        // 登录 token 过期
+        if (err.response.status === 401) {
+            window.localStorage.clear()
+            window.location = "/#/login"
+        }
+        throw err
+    }
+);
+
 export default service
